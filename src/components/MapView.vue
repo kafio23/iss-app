@@ -17,6 +17,7 @@ export default {
       posts: [],
       errors: [],
       coords: [],
+      isMatching: false,
       triangleCoords: [
         { lat: 25.774, lng: -80.19 },
         { lat: 18.466, lng: -66.118 },
@@ -27,7 +28,7 @@ export default {
 
   created: function() {
     this.loadData();
-    this.timer = setInterval(this.loadData, 300000);
+    this.timer = setInterval(this.loadData, 3000);
   },
 
   methods: {
@@ -36,6 +37,7 @@ export default {
         .get(`http://api.open-notify.org/iss-now.json`)
         .then(response => {
           console.log("Actualizando cada 3 segundos");
+          
           this.coords = response.data.iss_position;
         })
         .catch(e => {

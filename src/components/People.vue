@@ -6,7 +6,7 @@
         {{ person.name }}
       </li>
     </ul>
-    <p v-else>No people left!</p>
+    <p v-else>No hay personas!</p>
   </div>
 </template>
 

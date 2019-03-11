@@ -1,11 +1,13 @@
 import Vue from "vue";
 import App from "./App.vue";
 import People from "./components/People";
+import MapView from "./components/MapView";
 import store from './store';
 
 const routes = {
   "/": App,
-  "/people": People
+  "/people": People,
+  "/map": MapView
 };
 
 new Vue({

@@ -19,6 +19,8 @@ export default {
       errors: [],
       coords: [],
       isMatching: false,
+      matchLat: false,
+      matchLong: false,
       triangleCoords: [
         { lat: 25.774, lng: -80.19 },
         { lat: 18.466, lng: -66.118 },
@@ -38,8 +40,18 @@ export default {
         .get(`http://api.open-notify.org/iss-now.json`)
         .then(response => {
           console.log("Actualizando cada 3 segundos");
-
           this.coords = response.data.iss_position;
+          this.triangleCoords.array.forEach(element => {
+            if (element.lat == coords.latitude) {
+              this.matchLat = true;
+            }
+            if (element.lng == coords.longitude) {
+              this.matchLong = true;
+            }
+            if (this.matchLong && this.matchLat) {
+              this.isMatching = true;
+            }
+          });
         })
         .catch(e => {
           this.errors.push(e);

@@ -5,6 +5,7 @@
     <p>{{ this.triangleCoords }}</p>
     <p>Coordenadas Actuales:</p>
     <p>{{ this.coords }}</p>
+    <p v-if="isMatching">Pasó por Triángulo de las Bermudas</p>
   </div>
 </template>
 
@@ -37,7 +38,7 @@ export default {
         .get(`http://api.open-notify.org/iss-now.json`)
         .then(response => {
           console.log("Actualizando cada 3 segundos");
-          
+
           this.coords = response.data.iss_position;
         })
         .catch(e => {

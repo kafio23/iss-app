@@ -1,8 +1,25 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
+import People from "./components/People";
+import store from './store';
 
-Vue.config.productionTip = false
+const routes = {
+  "/": App,
+  "/people": People
+};
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  el: "#app",
+  data: {
+    currentRoute: window.location.pathname
+  },
+  store,
+  computed: {
+    ViewComponent() {
+      return routes[this.currentRoute] || NotFound;
+    }
+  },
+  render(h) {
+    return h(this.ViewComponent);
+  }
+});
